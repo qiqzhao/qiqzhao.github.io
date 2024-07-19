@@ -24,6 +24,8 @@ const PostDetail: FC = () => {
     console.log(post);
   }, [slug]);
 
+  const content = post?.content?.replace(/\.\.\/public/g, '') || '';
+
   return (
     <div className="mx-auto px-5 mt-16 lg:px-48">
       <div className="flex flex-col mb-10">
@@ -40,7 +42,7 @@ const PostDetail: FC = () => {
         <div>
           <div
             className={markdownStyles["markdown"]}
-            dangerouslySetInnerHTML={{ __html: post?.content || "" }}
+            dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
       </div>
