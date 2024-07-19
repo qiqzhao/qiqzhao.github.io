@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { getAllPosts } from "../../lib/api";
 import Intro from "@/components/intro";
 import Post from "@/components/post";
+import { IPost } from "@/type/post";
 
 export default function Home() {
-  const allPosts = getAllPosts([
+  const allPosts: IPost[] = getAllPosts([
     "title",
     "date",
     "slug",
@@ -12,12 +12,19 @@ export default function Home() {
     "coverImage",
     "excerpt",
   ]);
+
   console.log("aaaa", allPosts);
   return (
     <>
       <Intro />
-      {allPosts.map((post, index) => (
-        <Post key={index} {...post} />
+      {allPosts.map(({ title, date, slug, author }, index) => (
+        <Post
+          key={index}
+          title={title}
+          date={date}
+          slug={slug}
+          author={author}
+        />
       ))}
     </>
   );

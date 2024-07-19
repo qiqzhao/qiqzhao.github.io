@@ -33,7 +33,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "build/types/**/*.ts"
-, "lib/markdownToHtml.js"  ],
+, "lib/markdownToHtml.ts"  ],
   "exclude": [
     "node_modules"
   ]

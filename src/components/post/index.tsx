@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 
 interface IProps {
+  key: number;
   title: string;
   date: string;
   slug: string;
@@ -10,11 +11,11 @@ interface IProps {
   };
 }
 
-const Post: FC<IProps> = ({ title, date, author }) => {
+const Post: FC<IProps> = ({ title, date, author, slug }) => {
   return (
     <div>
       <h3>
-        <Link as={""} href={""}>
+        <Link as={`/posts/${slug}`} href="/posts/[slug]">
           {title}
         </Link>
       </h3>
