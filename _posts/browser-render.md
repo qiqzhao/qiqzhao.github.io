@@ -71,7 +71,7 @@ DOM 树和 Layout 树不一定是一一对应的
 
 ![](../public/browser-render/render-end.png)
 
-### 6. 分块 —— 
+### 6. 分块 —— Tiling
 
 完成绘制后，主线程将每个图层的绘制信息提交给合成线程，剩余工作将由合成线程完成
 
