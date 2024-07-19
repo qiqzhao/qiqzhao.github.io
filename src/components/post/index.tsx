@@ -13,13 +13,13 @@ interface IProps {
 
 const Post: FC<IProps> = ({ title, date, author, slug }) => {
   return (
-    <div>
-      <h3>
+    <div className="mb-6">
+      <h3 className="text-lg mb-1">
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
           {title}
         </Link>
       </h3>
-      <div>{date}</div>
+      <div className="text-xs text-gray-500">{date}</div>
     </div>
   );
 };

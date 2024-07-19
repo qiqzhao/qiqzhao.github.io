@@ -13,7 +13,6 @@ export default function Home() {
     "excerpt",
   ]);
 
-  console.log("aaaa", allPosts);
   return (
     <>
       <Intro />
