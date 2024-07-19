@@ -6,5 +6,5 @@ export interface IPost {
   author: {
     name: string;
   };
+  content?: string;
 }
-

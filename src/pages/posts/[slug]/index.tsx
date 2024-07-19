@@ -1,11 +1,28 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import "../../../app/globals.css";
 import Link from "next/link";
+import axios from "axios";
+import { IPost } from "@/type/post";
+import markdownStyles from "../../../components/markdown-style.module.css";
 
 const PostDetail: FC = () => {
   const router = useRouter();
   const { slug } = router.query;
+
+  const [post, setPost] = useState<IPost>();
+
+  const fetchPost = async () => {
+    const { data } = await axios.get(`/api/posts`);
+    console.log("ppp", post);
+    setPost(data);
+  };
+  useEffect(() => {
+    if (slug) {
+      fetchPost();
+    }
+    console.log(post);
+  }, [slug]);
 
   return (
     <div className="mx-auto px-5 mt-16 lg:px-48">
@@ -15,12 +32,17 @@ const PostDetail: FC = () => {
             My Blog.
           </Link>
         </h3>
-        <h1 className="text-4xl mb-5">{slug}</h1>
+        <h1 className="text-4xl mb-5">{post?.title}</h1>
         <div className="mb-8">
-          <div>qiqzhao</div>
-          <div className="text-xs text-gray-500">qiqzhao</div>
+          <div>{post?.author.name}</div>
+          <div className="text-xs text-gray-500">{post?.date}</div>
         </div>
-        <div>test</div>
+        <div>
+          <div
+            className={markdownStyles["markdown"]}
+            dangerouslySetInnerHTML={{ __html: post?.content || "" }}
+          />
+        </div>
       </div>
     </div>
   );
