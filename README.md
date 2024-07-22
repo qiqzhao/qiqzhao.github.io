@@ -1,5 +1,5 @@
-# My blog site using React and Markdown
+# My blog site
 
 ---
 
-[https://qiqzhao.github.io/](https://qiqzhao.github.io/)
+[https://qiqzhao.vercel.app/](https://qiqzhao.vercel.app/)
