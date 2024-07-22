@@ -12,19 +12,20 @@ const PostDetail: FC = () => {
 
   const [post, setPost] = useState<IPost>();
 
-  const fetchPost = async () => {
-    const { data } = await axios.get(`/api/posts`);
-    console.log("ppp", post);
-    setPost(data);
-  };
   useEffect(() => {
+    const fetchPost = async () => {
+      const { data } = await axios.get(`/api/posts/${slug}`);
+      console.log("ppp", post);
+      setPost(data);
+    };
+
     if (slug) {
       fetchPost();
     }
     console.log(post);
   }, [slug]);
 
-  const content = post?.content?.replace(/\.\.\/public/g, '') || '';
+  const content = post?.content?.replace(/\.\.\/public/g, "") || "";
 
   return (
     <div className="mx-auto px-5 mt-16 lg:px-48">

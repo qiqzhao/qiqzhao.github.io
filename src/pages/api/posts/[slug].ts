@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getPostBySlug } from "../../../lib/api";
-import markdownToHtml from "../../../lib/markdownToHtml";
+import { getPostBySlug } from "../../../../lib/api";
+import markdownToHtml from "../../../../lib/markdownToHtml";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const { slug } = req.query;
-    const post = await getPost('browser-render');
+    const post = await getPost(slug as string);
     res.status(200).json(post);
   }
 }
