@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getPostBySlug } from "../../../../lib/api";
-import markdownToHtml from "../../../../lib/markdownToHtml";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,8 +12,8 @@ export default async function handler(
   }
 }
 
-export async function getPost(slug: string) {
-  const post = getPostBySlug(slug, [
+async function getPost(slug: string) {
+  return getPostBySlug(slug, [
     "title",
     "date",
     "slug",
@@ -23,10 +22,4 @@ export async function getPost(slug: string) {
     "ogImage",
     "coverImage",
   ]);
-  const content = await markdownToHtml(post.content || "");
-
-  return {
-    ...post,
-    content,
-  };
 }

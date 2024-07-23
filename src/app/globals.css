@@ -21,3 +21,27 @@
     text-wrap: balance;
   }
 }
+
+.markdown > * {
+  all: revert;
+}
+
+table {
+  border-collapse: collapse !important;
+}
+
+th {
+  background-color: gray; /* 表头是浅蓝色的 */
+  color: #333;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 8px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #000;
+}

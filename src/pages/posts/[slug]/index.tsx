@@ -4,7 +4,12 @@ import "../../../app/globals.css";
 import Link from "next/link";
 import axios from "axios";
 import { IPost } from "@/type/post";
-import markdownStyles from "../../../components/markdown-style.module.css";
+import "../../../components/markdown-style.css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nord } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const PostDetail: FC = () => {
   const router = useRouter();
@@ -15,17 +20,25 @@ const PostDetail: FC = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const { data } = await axios.get(`/api/posts/${slug}`);
-      console.log("ppp", post);
       setPost(data);
     };
 
     if (slug) {
       fetchPost();
     }
-    console.log(post);
   }, [slug]);
 
   const content = post?.content?.replace(/\.\.\/public/g, "") || "";
+
+  const MarkdownComponents = {
+    code: ({children, className}: any) => {
+      return (
+        <SyntaxHighlighter language={className?.slice(9)} style={nord}>
+          {children}
+        </SyntaxHighlighter>
+      );
+    },
+  };
 
   return (
     <div className="mx-auto px-5 mt-16 lg:px-48">
@@ -40,12 +53,14 @@ const PostDetail: FC = () => {
           <div>{post?.author.name}</div>
           <div className="text-xs text-gray-500">{post?.date}</div>
         </div>
-        <div>
-          <div
-            className={markdownStyles["markdown"]}
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
-        </div>
+        <ReactMarkdown
+          className="markdown"
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+          components={MarkdownComponents}
+        >
+          {content}
+        </ReactMarkdown>
       </div>
     </div>
   );
