@@ -1,6 +1,6 @@
 import { getAllPosts } from "../../lib/api";
 import Intro from "@/components/intro";
-import Post from "@/components/post";
+import Post from "@/components/home";
 import { IPost } from "@/type/post";
 
 export default function Home() {
