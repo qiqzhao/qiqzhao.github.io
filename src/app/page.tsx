@@ -11,7 +11,9 @@ export default function Home() {
     "author",
     "coverImage",
     "excerpt",
-  ]);
+  ]).sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 
   return (
     <>
