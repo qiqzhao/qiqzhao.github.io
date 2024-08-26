@@ -8,7 +8,7 @@ import { IPost } from "@/type/post";
 import PostTitle from "@/components/post/title";
 import PostAuthor from "@/components/post/author";
 import CustomMarkdown from "@/components/post/custom-markdown";
-import PostHeader from "@/components/post/header";
+import Header from "@/components/common/header";
 
 const PostDetail: FC = () => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const PostDetail: FC = () => {
   return (
     <div className="mx-auto px-5 mt-16 lg:px-48">
       <div className="flex flex-col mb-10">
-        <PostHeader />
+        <Header />
         <PostTitle title={post?.title}></PostTitle>
         <PostAuthor author={post?.author?.name} date={post?.date}></PostAuthor>
         <CustomMarkdown content={post?.content} />
