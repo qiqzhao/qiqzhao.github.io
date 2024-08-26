@@ -3,6 +3,8 @@ import React, { FC } from "react";
 
 import "../../app/globals.css";
 import Header from "@/components/post/header";
+import Li from "@/components/about/li";
+import SectionTitle from "@/components/about/section-title";
 
 const About: FC = () => {
   return (
@@ -18,77 +20,97 @@ const About: FC = () => {
           alt="avatar"
         />
         <h1 className="mt-6 text-lg font-bold">{`qiqzhao's Blog`}</h1>
-        <a className="text-sm leading-8 text-gray-400" href="https://github.com/qiqzhao">https://github.com/qiqzhao</a>
+        <a
+          className="text-sm leading-8 text-gray-400"
+          href="https://github.com/qiqzhao"
+          target="__blank"
+        >
+          https://github.com/qiqzhao
+        </a>
       </div>
 
       <div className="flex flex-col gap-4 text-gray-400 leading-10">
         <div>
-          <h4 className="text-black font-bold">熟悉的技术</h4>
+          <SectionTitle>折腾过的</SectionTitle>
 
-          <li className="text-sm leading-8">
+          <Li>
             目前正在做的 React UI 库，
             <a
               className="text-blue-500 hover:text-blue-700 "
               href="https://github.com/choco-ui/choco-ui"
+              target="__blank"
             >
               choco-ui
             </a>
-          </li>
+          </Li>
 
-          <li className="text-sm leading-8">
+          <Li>
+            想做一个教背古诗的小程序，但苦于买不起服务器，暂时搁置，没有link，小程序搜索，
+            <a
+              className="text-blue-500 hover:text-blue-700 "
+              href="#"
+            >
+              个人学背古诗
+            </a>
+          </Li>
+
+          <Li>
             学习 CSS3 动画汇总，
             <a
               className="text-blue-500 hover:text-blue-700 "
               href="https://qiqzhao.github.io/css-demo/"
+              target="__blank"
             >
               CSS-demo
             </a>
-          </li>
+          </Li>
 
-          <li className="text-sm leading-8">
+          <Li>
             模仿某个官网做的响应式，
             <a
               className="text-blue-500 hover:text-blue-700 "
               href="https://github.com/qiqzhao/task"
+              target="__blank"
             >
               响应式官网
             </a>
-          </li>
+          </Li>
 
-          <li className="text-sm leading-8">
-            人生第一个 NPM 包，
+          <Li>
+            人生第一个 NPM 包，好几年前的，只能考古了，
             <a
               className="text-blue-500 hover:text-blue-700 "
               href="https://www.npmjs.com/package/@qiqzhao/react-cli"
+              target="__blank"
             >
               react-cli
             </a>
-          </li>
+          </Li>
         </div>
 
         <div>
-          <h4 className="text-black font-bold">熟悉的技术</h4>
+          <SectionTitle>熟悉的技术</SectionTitle>
 
-          <li className="text-sm leading-8">Javascript</li>
-          <li className="text-sm leading-8">React</li>
-          <li className="text-sm leading-8">Node.js</li>
-          <li className="text-sm leading-8">Webpack</li>
-          <li className="text-sm leading-8">MySQL</li>
-          <li className="text-sm leading-8">MongoDB</li>
+          <Li>Javascript </Li>
+          <Li>React </Li>
+          <Li>Node.js </Li>
+          <Li>Webpack </Li>
+          <Li>MySQL </Li>
+          <Li>MongoDB </Li>
         </div>
 
         <div>
-          <h4 className="text-black font-bold">学过的技术</h4>
+          <SectionTitle>学过的技术</SectionTitle>
 
-          <li className="text-sm leading-8">Java</li>
-          <li className="text-sm leading-8">Docker</li>
-          <li className="text-sm leading-8">CI CD</li>
+          <Li>Java </Li>
+          <Li>Docker </Li>
+          <Li>CI CD </Li>
         </div>
 
         <div>
-          <h4 className="text-black font-bold">联系方式</h4>
+          <SectionTitle>联系方式</SectionTitle>
 
-          <li className="text-sm leading-8">邮箱：bme_ritter@foxmail.com</li>
+          <Li>邮箱：bme_ritter@foxmail.com </Li>
         </div>
       </div>
     </section>

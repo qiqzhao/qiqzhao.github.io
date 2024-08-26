@@ -19,8 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="px-8 py-4 mx-atuo lg:px-48 flex gap-4 sticky top-0 bg-black text-white text-xl">
-          <Link href="/">HOME</Link>
-          <Link href="/about">ABOUT</Link>
+          <Link className="hover:opacity-60" href="/">
+            HOME
+          </Link>
+          <Link className="hover:opacity-60" href="/about">
+            ABOUT
+          </Link>
         </div>
         <div className="mx-auto px-8 mt-8 lg:px-48">{children}</div>
       </body>
