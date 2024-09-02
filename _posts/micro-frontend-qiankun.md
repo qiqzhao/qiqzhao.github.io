@@ -303,6 +303,43 @@ export default defineConfig({
 });
 ```
 
+### 注
+
+- Q1：子应用间样式隔离，但是基座的样式一直在子应用中
+
+解决方案：
+
+1. 每个应用的样式使用固定的样式，例如，base 中加前缀 base-，子应用加前缀 sub-react、sub-vue、subt-umi
+2. 通过 css-module 的方式给每个子应用加前缀
+
+- Q2：子应用间跳转
+
+解决方案：
+
+1. 主应用和微应用都是 hash 模式，主应用根据 hash 来判断微应用，则不考虑这个问题
+2. History 模式下微应用之间跳转，或者微应用跳主应用页面，直接使用微应用的路由实例是不行，原因是微应用的路由实例跳转都是基于路由的 base。可通过 **history.push** 和 **将主应用的路由实例通过 props 传递给微应用，微应用通过这个实例跳转**
+
+```tsx
+// 自应用
+const goVue = () => {
+  window.history.pushState({}, "", "/sub-vue");
+};
+<a onClick={goVue}> sub vue main</a>;
+```
+
+- Q3：公共依赖加载，重复打包
+
+解决方案：
+
+1. 主应用：将所有公共依赖配置 webpack 的 externals，并且在 index.html 使用外链引入
+2. 子应用：同样使用 external，并在 index.html 使用外链，注意还需为子应用的公共依赖加上 ignore 属性(自定义，非标准属性)，qiankun 在解析时发现 ignore 属性就会自动忽略
+
+- Q4：全家状态管理
+
+解决方案：
+
+1. qiankun 提供了一个全局的 GlobalState 来共享数据，基座初始化后，子应用可以监听到这个数据的变化，也能提交这个数据
+
 ### 附
 
 源码：[qiankun-micro-app](https://github.com/qiqzhao/qiankun-micro-app)
