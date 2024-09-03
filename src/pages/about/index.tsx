@@ -47,6 +47,17 @@ const About: FC = () => {
           <SectionTitle>折腾过的</SectionTitle>
 
           <Li>
+            做了一个只有我自己在用的，
+            <a
+              className="text-blue-500 hover:text-blue-700 "
+              href="https://www.npmjs.com/package/react-reading-glass"
+              target="__blank"
+            >
+              react 放大镜组件
+            </a>
+          </Li>
+
+          <Li>
             仿网易云的，
             <a
               className="text-blue-500 hover:text-blue-700 "
