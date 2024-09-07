@@ -166,6 +166,17 @@ from dual;
 
 规则
 
-- 默认是，数据添加顺序
-- asc 升序
+- 默认是，数据添加顺序（**不加 order by**）
+- asc 升序（**加 order by 的默认值**）
 - desc 降序
+
+```sql
+select employee_id, last_name, salary
+from employees;
+order by salary;
+
+# 二级排序，多列排序
+select employee_id, salary, department_id
+from employees;
+order by department_id desc, salary asc;
+```
