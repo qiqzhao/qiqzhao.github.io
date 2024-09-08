@@ -162,7 +162,7 @@ from dual;
 - \>> 右移
 - \<< 左移
 
-### order by
+### order by 排序
 
 规则
 
@@ -179,4 +179,36 @@ order by salary;
 select employee_id, salary, department_id
 from employees;
 order by department_id desc, salary asc;
+```
+
+### limit 分页
+
+**格式**  
+limit 位置偏移量,条目数
+
+```sql
+# 每页显示20条记录，此时第1页
+select *
+from employees
+limit 0,20;
+
+# 每页显示20条记录，此时第2页
+select *
+from employees
+limit 20,20;
+
+# 每页显示pageSize条记录，此时第pageNo页
+select *
+from employees
+limit (pageNo - 1) * pageSize,pageSize;
+```
+
+**where、 order by、 limit 顺序**
+
+```sql
+select *
+from employees
+where salary > 6000
+order by salary desc
+limit 10;
 ```
