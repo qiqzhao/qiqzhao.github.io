@@ -212,3 +212,15 @@ where salary > 6000
 order by salary desc
 limit 10;
 ```
+
+### 多表查询
+
+
+```sql
+select *
+from employees e, departments d
+where e.department_id = d.department_id;
+```
+
+**笛卡尔积（或交叉连接）**  
+是一个数学运算。假设我有两个集合 X 和 Y，那么 X 和 Y 的笛卡尔积就是 X 和 Y 的所有可能组合，也就是第一个对象来自于 X，第二个对象来自于 Y 的所有可能。组合的个数即为两个集合元素个数的乘积数。
