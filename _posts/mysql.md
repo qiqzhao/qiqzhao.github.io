@@ -215,7 +215,6 @@ limit 10;
 
 ### 多表查询
 
-
 ```sql
 select *
 from employees e, departments d
@@ -224,3 +223,91 @@ where e.department_id = d.department_id;
 
 **笛卡尔积（或交叉连接）**  
 是一个数学运算。假设我有两个集合 X 和 Y，那么 X 和 Y 的笛卡尔积就是 X 和 Y 的所有可能组合，也就是第一个对象来自于 X，第二个对象来自于 Y 的所有可能。组合的个数即为两个集合元素个数的乘积数。
+
+**内连接**：合并具有同一列的两个以上的表的行，结果集中不包含一个表与另一个表不匹配的行
+
+**外连接**：合并具有同一列的两个以上的表的行，结果集中不包含一个表与另一个表不匹配的行外，还查询到了坐表或右表中不匹配的行
+
+#### union 合并查询
+
+- union -> 返回两个查询结果集的并集，去除重复记录
+- union all -> 返回两个查询的结果集的并集，并对两个结果集的重复部分，不去重
+
+> 注意：执行 union all 所需要的资源比 union 少。
+> 结论：如果明确知道合并数据后的结果数据不存在重复数据，或者不需要去重，则尽量使用 union all，提高查询效率
+
+#### join
+
+![](../public/mysql/join.png)
+
+```sql
+# 中图 内连接
+select *
+from A join B
+on A.d_id = B.d_id;
+
+# 左上图 左外连接
+select *
+from A left join B
+on A.d_id = B.d_id;
+
+# 右上图 右外连接
+select *
+from A right join B
+on A.d_id = B.d_id;
+
+# 左中图
+select *
+from A left join B
+on A.d_id = B.d_id;
+where B.d_id is null;
+
+# 右中图
+select *
+from A right join B
+on A.d_id = B.d_id;
+where A.d_id is null;
+
+# 左下图 满外连接
+# 方式1：左上 union all 右中
+select *
+from A left join B
+on A.d_id = B.d_id
+union all
+select *
+from A right join B
+on A.d_id = B.d_id;
+where A.d_id is null;
+# 方式2： 左中  union all 右上
+select *
+from A left join B
+on A.d_id = B.d_id;
+where B.d_id is null
+union all
+select *
+from A right join B
+on A.d_id = B.d_id;
+
+
+# 右下图：左中 union all 右中
+select *
+from A left join B
+on A.d_id = B.d_id;
+where B.d_id is null
+union all
+select *
+from A right join B
+on A.d_id = B.d_id;
+where A.d_id is null;
+```
+
+**natural join**：会自动查询两张表中，所有相同的字段，然后进行连接
+
+**using**：当两张表中连接的字段名称相同时，使用
+
+```sql
+select *
+from A join B
+on A.d_id = B.d_id;
+using(d_id)
+```
